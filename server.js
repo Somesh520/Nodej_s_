@@ -3,18 +3,23 @@ const app = express()
 const port = 3000
 const db=require('./db');
 
-
+const logRequest=(req,res,next)=>{
+  console.log('${ new Date().tolocalString()} Request made to : ${req.originalUrl}');
+  next();
+  
+}
 
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
-app.get('/', (req, res) => {
+app.get('/', logRequest, function(req, res) {
   res.send('Hello World!')
 })
 
 
 
 
-//for testing purpose
+
+//for testing purposenode
 
 const menuroute=require('./route/menuroute')
 
